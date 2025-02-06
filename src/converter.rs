@@ -6,12 +6,15 @@ use crate::root as ai_sys;
 #[no_mangle]
 impl From<ai_sys::ai::UnicodeString> for String {
     fn from(item: ai_sys::ai::UnicodeString) -> Self {
-        // let s = ai_sys::std::basic_string::from(item.);
         unsafe {
             String::from(
-                CString::from_raw(item.as_UTF8().as_mut_ptr() as *mut i8)
-                    .to_str()
-                    .unwrap(),
+                CString::from_raw(
+                    item.getInStdString(ai_sys::AICharacterEncoding::kAIUTF8CharacterEncoding)
+                        .0
+                        .as_mut_ptr() as *mut i8,
+                )
+                .to_str()
+                .unwrap(),
             )
         }
     }

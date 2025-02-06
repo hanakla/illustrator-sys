@@ -1,0 +1,22 @@
+[tasks.doc]
+command = "./setenv.sh"
+args = ["cargo", "doc"]
+
+[tasks.build]
+command = "./setenv.sh"
+args = ["cargo", "build", "--release"]
+
+[tasks."build:watch"]
+# command = "printenv"
+# args = ["CC"]
+command = "./setenv.sh"
+args = ["cargo", "watch", "-x", "build"]
+
+[tasks."build:example"]
+command = "./setenv.sh"
+args = [
+    "rustc",
+    "--extern",
+    "ai_sys=target/debug/libilustrator_sys.rlib",
+    "example/main.rs",
+]

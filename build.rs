@@ -38,7 +38,7 @@ fn main() {
         // "-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreServices.framework/Versions/A/Headers/",
         "-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/",
         // "-I/Library/Developer/CommandLineTools/usr/include/c++/v1/",
-        "-F/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/",
+        "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/",
     ];
 
     let project_root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
@@ -64,8 +64,9 @@ fn main() {
     let c_build = c_builder
         .cpp(true)
         .define("MAC_ENV", None)
+        // .define("WIN_ENV", "")
         .files(c_src.iter())
-        // .compiler("clang")
+        .compiler("clang")
         // .flag("-Wno-unused-parameter")
         // .flag("-std=c++14")
         .flag("--verbose");
@@ -76,6 +77,7 @@ fn main() {
     for clang_arg in clang_args.iter() {
         c_build.flag(clang_arg);
     }
+
     // TODO: We currently don't have any wrappers to compile in, so we just skip this step for now
     // c_build.compile("adobe_wrappers");
     println!("adobe_wrappers done.");
@@ -139,7 +141,7 @@ fn main() {
         .clang_arg("-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/")
         // .clang_arg("-I/Library/Developer/CommandLineTools/usr/include/c++/v1/")
         .clang_arg(
-            "-F/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/",
+            "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/",
         )
         .clang_arg("-v")
         .rust_target(RustTarget::default())

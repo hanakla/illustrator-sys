@@ -15,9 +15,9 @@
 //#include <algorithm>
 //#include <math.h>
 
-//#ifdef MAC_ENV
+#ifdef MAC_ENV
 #include <CoreFoundation/CoreFoundation.h>
-//#endif
+#endif
 
 //using namespace std;
 
