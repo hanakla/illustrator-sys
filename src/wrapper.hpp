@@ -8,6 +8,9 @@
 #include "IAIUnicodeString.h"
 #include "IAIArtboards.hpp"
 
-extern "C" void * /*ai::UnicodeString*/ unicode_string_from_utf8(const char *string);
+extern "C" {
+    void * /*ai::UnicodeString*/ unicode_string_from_utf8(const char *string);
+    char* std_string_to_c_stf(const std::string* str);
+}
 
 #endif //ILLUSTRATOR_WRAPPER_HPP

@@ -8,11 +8,9 @@ impl From<ai_sys::ai::UnicodeString> for String {
     fn from(item: ai_sys::ai::UnicodeString) -> Self {
         unsafe {
             String::from(
-                CString::from_raw(
-                    item.getInStdString(ai_sys::AICharacterEncoding::kAIUTF8CharacterEncoding)
-                        .0
-                        .as_mut_ptr() as *mut i8,
-                )
+                CString::from_raw(ai_sys::std_string_to_c_stf(
+                    &item.getInStdString(ai_sys::AICharacterEncoding::kAIUTF8CharacterEncoding),
+                ))
                 .to_str()
                 .unwrap(),
             )

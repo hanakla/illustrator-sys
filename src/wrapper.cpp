@@ -20,4 +20,8 @@ void *unicode_string_from_utf8(const char *string) {
     return reinterpret_cast<void *>(*reinterpret_cast<int *>(&tmp_unicode_string));
 }
 
+const char* cpp_string_to_c_str(const std::string* s) {
+   return strdup(s->c_str());
+}
+
 }

@@ -119,6 +119,7 @@ fn main() {
         .allowlist_function("SP.*Suite.*")
         .allowlist_function("ai::.*")
         .allowlist_function("unicode_string_from_utf8")
+        .allowlist_function("std_string_to_c_stf")
         // .allowlist_function(".*Plugin.*")
         // .allowlist_function("Fixup.*")
         .allowlist_function("kSP.*")
