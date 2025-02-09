@@ -1,1 +1,1 @@
-AISDK_ROOT="$(pwd)/SDK"
+AISDK_ROOT="$(pwd)/SDK" $@

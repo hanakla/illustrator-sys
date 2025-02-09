@@ -5,7 +5,7 @@
 #![allow(clippy::all)]
 #![allow(improper_ctypes)]
 
-pub use converter::*;
+// pub use converter::*;
 
 // Let's hope the authors of `bindgen` know better ;)
 include!(concat!(env!("OUT_DIR"), "/illustrator-sys.rs"));

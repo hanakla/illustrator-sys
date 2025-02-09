@@ -129,7 +129,8 @@ fn main() {
         //.allowlist_var("AI*")
         .clang_arg("-std=c++14")
         .opaque_type("std::.*")
-        .opaque_type("ai::UnicodeString")
+        // .opaque_type("ai::UnicodeString")
+        .allowlist_type("ai::.*UnicodeString")
         // .blocklist_item("ai::UnicodeString")
         //.opaque_type("size_type")
         // and args for include file search path
@@ -145,6 +146,8 @@ fn main() {
             "-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/",
         )
         .clang_arg("-v")
+        .clang_args(&["-x", "c++"])
+        .generate_comments(true)
         .rust_target(RustTarget::default())
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         // Finish the builder and generate the bindings.
